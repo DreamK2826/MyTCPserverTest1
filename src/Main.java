@@ -4,18 +4,41 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class Main {
-    static List<String> strList2;
+    private static List<String> strList2;
+    private static boolean flagOK = false;
+    private static List<APdata> aPdata;
+    private static List<TableData> tableDataList;
+
     public static void main(String[] args) throws IOException {
 
         TCP_server(22441);
+        new Thread(() ->{
+            while (true) {
+                if(flagOK){
+                    aPdata = new ArrayList<APdata>();
+
+                    String a = strList2.get(4);
+                    System.out.println(a);
+//            for (int i = 0; i < strList2.size(); i++) {
+////            aPdata.add();
+//
+//            }
+
+                    flagOK = false;
+                }
+            }
+        }).start();
+
     }
 
-    public static void TCP_server(int port) throws IOException {
+    private static void TCP_server(int port) throws IOException {
         //创建一个server socket其端口与发送端的端口是一样的
 
         ServerSocket ss  = new ServerSocket(port);
@@ -43,6 +66,7 @@ public class Main {
                             strList2 = Arrays.stream(s1.toString().split("\0")).toList();
                             System.out.println(strList2);
                             s1.delete(0,s1.length());
+                            flagOK = true;
                         }
                     }
 
