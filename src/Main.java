@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,22 +18,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         TCP_server(22441);
-        new Thread(() ->{
-            while (true) {
-                if(flagOK){
-                    aPdata = new ArrayList<APdata>();
-
-                    String a = strList2.get(4);
-                    System.out.println(a);
-//            for (int i = 0; i < strList2.size(); i++) {
-////            aPdata.add();
-//
-//            }
-
-                    flagOK = false;
-                }
-            }
-        }).start();
 
     }
 
@@ -42,6 +25,7 @@ public class Main {
         //创建一个server socket其端口与发送端的端口是一样的
 
         ServerSocket ss  = new ServerSocket(port);
+        aPdata = new ArrayList<>();
         new Thread(() -> {
             while(true){
                 try {
@@ -66,8 +50,32 @@ public class Main {
                             strList2 = Arrays.stream(s1.toString().split("\0")).toList();
                             System.out.println(strList2);
                             s1.delete(0,s1.length());
-                            flagOK = true;
                         }
+                        if(strList2 != null){
+                            for (int i = 0; i < strList2.size(); i++) {
+                                if(i == 1){
+                                    System.out.println(strList2.get(i).substring(5));
+                                }
+                                if(i == 2){
+                                    System.out.println(strList2.get(i).substring(5));
+                                }
+                                if(i == 3){
+                                    System.out.println(strList2.get(i).substring(5));
+
+                                }
+                                if (i > 3 && i < strList2.size() - 1) {
+                                    String str = strList2.get(i), temp1,temp2;
+                                    List<String> strL = Arrays.stream(str.split(",")).toList();
+                                    temp1 = strL.getFirst();
+                                    temp2 = strL.get(1);
+                                    temp1 = temp1.substring(1);
+                                    temp2 = temp2.substring(0,temp2.length()-1);
+                                    System.out.println("#" + (i-3) + ":" + temp1 + "~" + temp2);
+                                    aPdata.add(new APdata(temp1,Integer.parseInt(temp2)));
+                                }
+                            }
+                        }
+
                     }
 
 
