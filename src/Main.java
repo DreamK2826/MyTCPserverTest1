@@ -18,6 +18,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         TCP_server(22441);
+        System.out.println("MAIN:");
         new Thread(() -> {
             while(true){
                 if(flagOK){
@@ -26,24 +27,30 @@ public class Main {
                     if(strList2 != null){
                         for (int i = 0; i < strList2.size(); i++) {
                             if(i == 1){
-                                System.out.println(strList2.get(i).substring(5));
+//                                System.out.println(strList2.get(i).substring(5));
+                                System.out.println(strList2.get(i));
                             }
                             if(i == 2){
-                                System.out.println(strList2.get(i).substring(5));
+//                                System.out.println(strList2.get(i).substring(5));
+                                System.out.println(strList2.get(i));
                             }
                             if(i == 3){
-                                System.out.println(strList2.get(i).substring(5));
+//                                System.out.println(strList2.get(i).substring(5));
+                                System.out.println(strList2.get(i));
 
                             }
+                            if(i == 4){
+                                System.out.println(strList2.get(i));
+                            }
                             //从3号元素开始是wifi信息
-                            if (i > 3 && i < strList2.size() - 1) {
+                            if (i > 4 && i < strList2.size() - 1) {
                                 String str = strList2.get(i), temp1,temp2;
                                 List<String> strL = Arrays.stream(str.split(",")).toList();
                                 temp1 = strL.getFirst();
                                 temp2 = strL.get(1);
                                 temp1 = temp1.substring(1);
                                 temp2 = temp2.substring(0,temp2.length()-1);
-//                                    System.out.println("#" + (i-3) + ":" + temp1 + "~" + temp2);
+                                System.out.println("#" + (i-4) + ":" + temp1 + "~" + temp2);
                                 aPdata.add(new APdata(temp1,Integer.parseInt(temp2)));
                             }
                         }
