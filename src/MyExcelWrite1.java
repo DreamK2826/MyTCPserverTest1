@@ -1,0 +1,41 @@
+
+import java.util.List;
+import java.util.Observable;
+
+public class MyExcelWrite1 extends Observable implements Runnable{
+
+    //用于储存ap原始数据
+    private static List<APdata> dataList;
+    private static List<String> preData1;
+    //将用于生成excel的数据
+    private static volatile List<TableData> tableDataList;
+    //写入excel表格方法
+    public static void doExcelWrite() {
+
+    }
+
+    @Override
+    public void run() {
+/*
+        while (true){
+            if(Main.isFlag_pre_OK()){
+                List<TableData> tableDataList = new ArrayList<TableData>();
+                tableDataList.add(new TableData(
+                        "采集点2","1","2", new Date(),"-50","-75","-54",
+                        "-58","-54","-74","-78","-88","-84","-65",
+                        "-76","-89","-55","-70"
+                ));
+                try(ExcelWriter excelWriter = EasyExcel.write("D:/test/newTable01.xlsx",TableData.class).build()){
+
+                    WriteSheet writeSheet = EasyExcel.writerSheet().build();
+                    excelWriter.write(tableDataList, writeSheet);
+                } catch (Exception e){
+                    e.printStackTrace();
+                    break;
+                }
+            }
+            Main.setFlag_pre_OK(false);
+        }
+        */
+    }
+}

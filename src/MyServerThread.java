@@ -6,7 +6,6 @@ import java.util.*;
 
 public class MyServerThread extends Observable implements Runnable {
 
-
     // 此方法一经调用，立马可以通知观察者，在本例中是监听线程
     public void doBusiness() {
         super.setChanged();
@@ -45,9 +44,6 @@ public class MyServerThread extends Observable implements Runnable {
 //                            System.out.println(s1);
                             s1.delete(0,s1.length());
                             Main.setFlagOK(true);
-
-//                            String s11 = "";
-//                            s11.substring(2);
                         }
                     }
                 } catch (Exception exception) {
