@@ -48,9 +48,14 @@ public class MyServerThread extends Observable implements Runnable {
                     }
                 } catch (Exception exception) {
                     doBusiness();
-                    exception.printStackTrace();
+//                    exception.printStackTrace();
                     break;
                 }
             }
+        try {
+            ss.close();
+        } catch (IOException e) {
+            doBusiness();
+        }
     }
 }
